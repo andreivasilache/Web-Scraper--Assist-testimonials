@@ -1,0 +1,9 @@
+    <% numberOfTestiminialsPerCountry.forEach( (testimonialAndNumber)=>{ %>
+        <% if(countries[i] == testimonialAndNumber.country){ %>
+            <% if(testimonialAndNumber.numberOfTestimonials == 1){ %>
+            (1 Testimonial)
+            <% }else{ %>
+                (<%= testimonialAndNumber.numberOfTestimonials%> Testimonials)
+            <% } %>
+        <% } %>
+    <% } ) %>

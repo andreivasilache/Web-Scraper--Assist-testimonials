@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="/bootstrap.min.css">
+    <title>Assist Testmonials Web Scraper</title>
+
+</head>
+
+<body>
+    <div class="jumbotron">
+        <div id="freeSpace"></div>
+        <div id="title">
+            <h3><span class="assist">Assist</span> Web Scraper</h3>
+        </div>
+        <div>
+            <h6 class="name">Created by : <a href="http://vasilache-andrei.herokuapp.com/">Vasilache Andrei</a>
+                <br> on 'Homework for “Weekends” (Subject: Web Scraper)' Assignment.
+            </h6>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <% for(var i=0;i<countries.length;i++){  %>
+            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 testmonial">
+                <h1 class="country">
+                    <%= countries[i]%>
+                    <span class="countryTestimonialsNumber">
+                        <%- include ../partials/amountOfTestimonialsHTMLConstructor.ejs %>
+                    </span>
+                </h1>
+                <%- include ../partials/personHTMLConstructor.ejs %>
+            </div>
+            <% } %>
+        </div>
+    </div>
+
+</body>
+
+</html>
