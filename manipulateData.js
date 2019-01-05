@@ -16,7 +16,7 @@ var testimonials = [];
 var countries = [];
 var countryNumberOfTestimonials = [];
 
-function getCounteris() {
+function getCountries() {
     return countries.slice();
 }
 
@@ -76,6 +76,7 @@ function removeRedundantDataFromCountries() {
             unique[i] = true;
         }
     });
+
     pivotArray.push(Object.getOwnPropertyNames(unique));
     countries.length = 0;
     countries = pivotArray[0]
@@ -117,8 +118,9 @@ module.exports = {
     testimonials,
     countries,
     countryNumberOfTestimonials,
+    getHtmlData,
 
-    getCounteris,
+    getCountries,
     getDataFromAllPages,
     appFlow
 }

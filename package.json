@@ -10,7 +10,6 @@
   "author": "Vasilache Andrei",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^4.2.1",
     "cheerio": "^1.0.0-rc.2",
     "ejs": "^2.6.1",
     "express": "^4.16.4",

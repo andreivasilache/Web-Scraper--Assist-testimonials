@@ -1,14 +1,17 @@
 <% testimonials.forEach ( (testmonial) =>{ %>
-    <% if(testmonial.country[0] + testmonial.country[1] === countries[i]){ %>
-        <div class="personInfo">
-            <img class="personImg" src="<%=testmonial.profileImg%>"
-            alt="Picture"> <span class="personName"><%=testmonial.name %></span>
-        </div>
-    <% } %>
+
     <% if(testmonial.country[3] + testmonial.country[4] === countries[i]){ %>
         <div class="personInfo">
             <img class="personImg" src="<%=testmonial.profileImg%>"
             alt="Picture"> <span class="personName"><%=testmonial.name %></span>
         </div>
     <% } %>
+
+    <% if(testmonial.country[0] + testmonial.country[1] === countries[i]){ %>
+        <div class="personInfo">
+            <img class="personImg" src="<%=testmonial.profileImg%>"
+            alt="Picture"> <span class="personName"><%=testmonial.name %></span>
+        </div>
+    <% } %>
+
 <% })%>
