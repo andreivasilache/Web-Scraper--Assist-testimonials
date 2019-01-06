@@ -2,8 +2,8 @@
     '6. If an author belongs to multiple countries, display him under each country'
 
      On website the maximum number of countries that an author can belong is 2,
-    so I used string manipulation instead of an array,for simplicity.
-    See line 101 and 102.
+    so I used string manipulation (line 58) instead of an array,for simplicity.
+    See line 100 and 101.
 
 */
 
@@ -12,9 +12,9 @@ const $ = require('cheerio'),
     reqProm = require('request-promise');
 
 
-var testimonials = [];
-var countries = [];
-var countryNumberOfTestimonials = [];
+let testimonials = [],
+    countries = [],
+    testimonialsPerCountry = [];
 
 function getCountries() {
     return countries.slice();
@@ -39,6 +39,7 @@ async function getDataFromAllPages(url) {
 async function getHtmlData(url) {
     await reqProm(url)
         .then((html) => {
+
             let numberOfElementsPerRequest = $('div .testimonial-author > .testimonial-author ', html).length;
             let author = $('div .testimonial-author > .testimonial-author ', html);
             let country = $('div .field-content > .testimonial-author >  .testimonial-country ', html);
@@ -71,9 +72,9 @@ function removeRedundantDataFromCountries() {
     let unique = {};
     let pivotArray = [];
 
-    countries.forEach((i) => {
-        if (!unique[i]) {
-            unique[i] = true;
+    countries.forEach((country) => {
+        if (!unique[country]) {
+            unique[country] = true;
         }
     });
 
@@ -83,42 +84,40 @@ function removeRedundantDataFromCountries() {
 
 }
 
-function sortObjectArray() {
+function sortCountries() {
     countries.sort(function (a, b) {
         return ((a < b) ? -1 : ((a > b) ? 1 : 0));
     });
 }
 
 function numberOfTestimonialsByCountry() {
-    let countryTotalNumber;
+    let testimonialsOfCountry;
 
     for (let i = 0; i < countries.length; i++) {
 
-        countryTotalNumber = testimonials.filter(
+        testimonialsOfCountry = testimonials.filter(
             testimonial =>
             countries[i] === testimonial.country[0] + testimonial.country[1] ||
             countries[i] === testimonial.country[3] + testimonial.country[4]
         );
 
-        countryNumberOfTestimonials.push({
+        testimonialsPerCountry.push({
             country: countries[i],
-            numberOfTestimonials: countryTotalNumber.length
+            numberOfTestimonials: testimonialsOfCountry.length
         });
-
     }
 }
 
 function appFlow() {
     removeRedundantDataFromCountries();
-    sortObjectArray();
+    sortCountries();
     numberOfTestimonialsByCountry();
 }
 
 module.exports = {
     testimonials,
     countries,
-    countryNumberOfTestimonials,
-    getHtmlData,
+    testimonialsPerCountry,
 
     getCountries,
     getDataFromAllPages,

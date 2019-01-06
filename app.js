@@ -27,7 +27,7 @@ function indexRender(res) {
     res.render('index', {
         countries: data.getCountries(),
         testimonials: data.testimonials,
-        numberOfTestiminialsPerCountry: data.countryNumberOfTestimonials
+        numberOfTestiminialsPerCountry: data.testimonialsPerCountry
     });
 }
 
